@@ -1,0 +1,69 @@
+* ,
+::after,
+::before {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+:root {
+  --gray-00: #fff;
+  --gray-99: #101010;
+  --dark-blue: #0a0a23;
+  --light-font: #dfdfe2;
+  --button-border: rgb(250, 172, 50);
+  --yellow-dark: rgb(255, 172, 51);
+  --yellow-light: rgb(254, 204, 76);
+}
+
+
+body {
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  background-color: var(--dark-blue);
+  color: var(--light-font);
+}
+
+main {
+  width: 500px;
+  margin: 3rem auto;
+  /* align-items: center; */
+}
+
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  /* max-width: 50%; */
+  margin: 2rem auto 1rem;
+  border: none;
+}
+
+fieldset * {
+ display: block;
+}
+
+label {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+input{
+  width: 17rem;
+  height: 2.5rem;
+}
+
+button {
+  width: fit-content;
+  margin: auto;
+  font-size: 1.8rem;
+  font-weight: bold;
+  background-color: var(--button-border);
+  background-image: linear-gradient(var(--yellow-light) , var(--yellow-dark));
+  border-width: 0.3rem;
+  border-color: var(--button-border);
+}
