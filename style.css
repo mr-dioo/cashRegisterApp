@@ -67,3 +67,34 @@ button {
   border-width: 0.3rem;
   border-color: var(--button-border);
 }
+
+#cash-in-drawer {
+  border: 10px solid #99c9ff;
+  background-color: var(--gray-00);
+  width: fit-content;
+  padding: 1rem;
+  color: var(--dark-blue);
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  font-size: 1.8rem;
+  padding: 0;
+  margin: 0;
+}
+
+li > span {
+  font-size: inherit;
+}
+
