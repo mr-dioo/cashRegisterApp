@@ -33,6 +33,11 @@ h1 {
   text-align: center;
 }
 
+#change-due {
+  width: fit-content;
+  margin: auto;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -68,12 +73,15 @@ button {
   border-color: var(--button-border);
 }
 
+
+
 #cash-in-drawer {
   border: 10px solid #99c9ff;
   background-color: var(--gray-00);
   width: fit-content;
   padding: 1rem;
   color: var(--dark-blue);
+  margin: 3rem auto;
 }
 
 h2 {
