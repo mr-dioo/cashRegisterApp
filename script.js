@@ -6,10 +6,18 @@ const changeDueList = changeDue.querySelector("ul");
 
 let price = 0;
 let cid = [,];
-let cash = 0;
+let cash =0;
 
 
-const checkValidInput() {
-  
-}
 
+
+
+purchaseBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  cash = cashInput.value;
+  if (cash === "") {
+    return; 
+  }
+
+
+})
