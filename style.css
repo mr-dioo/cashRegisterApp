@@ -106,3 +106,9 @@ li > span {
   font-size: inherit;
 }
 
+.hidden {
+  display: none;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
