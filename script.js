@@ -15,7 +15,8 @@ const changesValue = {
 "ONE HUNDRED" : 100  ,
 }
 
-let price = 0;
+let price = 4.2 ;
+let cash =0;
 let cid = [
   ["PENNY", 1.01],
   ["NICKEL", 2.05],
@@ -27,7 +28,6 @@ let cid = [
   ["TWENTY", 60],
   ["ONE HUNDRED", 100]
 ];
-let cash =0;
 
 class Drawer {
   constructor(cid) {
@@ -51,6 +51,7 @@ class Drawer {
     } else if (this.status === 'Open' && availableSum - changeDue < 0) {
       this.status = "INSUFFICIENT_FUNDS";
     }
+
   }
 
   returnChange(changeDue) {
@@ -98,17 +99,46 @@ class Drawer {
 
 const drawer = new Drawer(cid);
 
-console.log(drawer.getSum())
+// console.log(drawer.getSum())
 
 
-console.log(drawer.returnChange(4.5))
+// console.log(drawer.returnChange(4.5))
+
+
+const showresult = (arr) => {
+  
+  changeDue.classList.contains("hidden") &&
+    changeDue.classList.remove('hidden');
+  
+  drawerStatus.textContent = `Status: ${drawer.getStatus()}`;
+  changeDueList.innerHTML = '';
+  
+  if (arr.length === 0)
+    return;
+  const listOfListElement= arr.map((name , amount) => {
+    `<li>${name}: ${amount}</li>`
+  });
+  listOfListElement.forEach(li => changeDueList.innerHTML += li);
+
+}
 
 
 purchaseBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  cash = cashInput.value;
-  if (cash === "") {
+  cash = parseFloat(cashInput.value);
+  if (isNaN(cash)) {
     return; 
   }
-
+  const returningChanges = [];
+  const changeDue = cash - price;
+  if (changeDue < 0) {
+    alert('Customer does not have enough money to purchase the item'); 
+    return;
+  } else if (changeDue === 0) {
+    alert('No change due - customer paid with exact cash'); 
+    return;
+  } else {
+    returningChanges.push([...drawer.returnChange(changeDue)])
+  }
+  showresult(returningChanges)
 })
