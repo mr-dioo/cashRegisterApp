@@ -97,12 +97,6 @@ class Drawer {
 
 }
 
-const drawer = new Drawer(cid);
-
-// console.log(drawer.getSum())
-
-
-// console.log(drawer.returnChange(4.5))
 
 
 const showresult = (arr) => {
@@ -121,6 +115,22 @@ const showresult = (arr) => {
 
 }
 
+const updateCashInDrawer = () => {
+  const currentCid = {};
+  drawer.cashInDrawer.forEach(el => {
+    currentCid[el[0]] = el[1]; 
+  })
+  const cashInDrawerElement = document.getElementById("cash-in-drawer");
+  const changeList = cashInDrawerElement.querySelectorAll(".change-amount")
+
+  changeList.forEach(li => {
+    li.textContent = currentCid[li.dataset.changeName] || "0.00";
+  })
+}
+
+
+const drawer = new Drawer(cid);
+updateCashInDrawer();
 
 purchaseBtn.addEventListener('click', (event) => {
   event.preventDefault();
@@ -138,5 +148,6 @@ purchaseBtn.addEventListener('click', (event) => {
     return;
   } else {
     showresult(drawer.returnChange(changeDue));
+    updateCashInDrawer();
   }
 })
