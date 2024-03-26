@@ -137,7 +137,6 @@ purchaseBtn.addEventListener('click', (event) => {
     alert('No change due - customer paid with exact cash'); 
     return;
   } else {
-    returningChanges.push([...drawer.returnChange(changeDue)])
+    showresult(drawer.returnChange(changeDue));
   }
-  showresult(returningChanges)
 })
