@@ -59,8 +59,6 @@ class Drawer {
     let changeIndex = this.cashInDrawer.length - 1; 
     
     this.updateStatus(changeDue);
-    // console.log(this.getStatus());
-    // console.log(this.getStatus() !== 'Open')
     if (this.getStatus() !== 'Open') {
       return;  
     }
@@ -103,9 +101,14 @@ const showresult = (arr) => {
   
   changeDue.classList.contains("hidden") &&
     changeDue.classList.remove('hidden');
+  changeDueList.innerHTML = '';
+  if (typeof arr === 'string') {
+    drawerStatus.textContent = arr;
+    return;
+  }
+  
   
   drawerStatus.textContent = `Status: ${drawer.getStatus()}`;
-  changeDueList.innerHTML = '';
   
   if (arr.length === 0)
     return;
@@ -141,11 +144,9 @@ purchaseBtn.addEventListener('click', (event) => {
   const returningChanges = [];
   const changeDue = parseFloat((cash - price).toFixed(2));
   if (changeDue < 0) {
-    alert('Customer does not have enough money to purchase the item'); 
-    return;
+    showresult('Customer does not have enough money to purchase the item'); 
   } else if (changeDue === 0) {
-    alert('No change due - customer paid with exact cash'); 
-    return;
+    showresult('No change due - customer paid with exact cash'); 
   } else {
     showresult(drawer.returnChange(changeDue));
     updateCashInDrawer();
