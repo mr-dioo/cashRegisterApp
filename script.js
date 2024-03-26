@@ -88,7 +88,7 @@ class Drawer {
       
       this.cashInDrawer[changeIndex][1] -= returningValueFromCurrentChange;
       
-      changeDue -= returningValueFromCurrentChange;
+      changeDue = parseFloat((changeDue - returningValueFromCurrentChange).toFixed(2));
       changeIndex--;
     }
 
@@ -115,9 +115,8 @@ const showresult = (arr) => {
   
   if (arr.length === 0)
     return;
-  const listOfListElement= arr.map((name , amount) => {
-    `<li>${name}: ${amount}</li>`
-  });
+  const listOfListElement =
+    arr.map((li) => `<li>${li[0]}: ${li[1]}</li>`);
   listOfListElement.forEach(li => changeDueList.innerHTML += li);
 
 }
@@ -130,7 +129,7 @@ purchaseBtn.addEventListener('click', (event) => {
     return; 
   }
   const returningChanges = [];
-  const changeDue = cash - price;
+  const changeDue = parseFloat((cash - price).toFixed(2));
   if (changeDue < 0) {
     alert('Customer does not have enough money to purchase the item'); 
     return;
