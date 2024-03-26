@@ -53,8 +53,45 @@ class Drawer {
     }
   }
 
-  returnChange(itemPrice, cash) {
+  returnChange(changeDue) {
+    const returnValues = [];
+    let changeIndex = this.cashInDrawer.length - 1; 
     
+    this.updateStatus(changeDue);
+    // console.log(this.getStatus());
+    // console.log(this.getStatus() !== 'Open')
+    if (this.getStatus() !== 'Open') {
+      return;  
+    }
+      
+    while (changeDue > 0) {
+      const currentChange = this.cashInDrawer[changeIndex]; 
+      const currentChangeName = currentChange[0];
+      const currentChangeAmount = currentChange[1];
+      const currentChangeValue = changesValue[currentChangeName];
+
+      if (currentChangeAmount <= 0 ||
+        changeDue / currentChangeValue < 1) {
+        changeIndex--;
+        continue;
+      }
+
+      const returningValueFromCurrentChange =
+        Math.min(
+          Math.floor(changeDue / currentChangeValue) * currentChangeValue,
+          currentChangeAmount);
+      
+      returnValues.unshift(
+        [currentChangeName,
+          returningValueFromCurrentChange]);
+      
+      this.cashInDrawer[changeIndex][1] -= returningValueFromCurrentChange;
+      
+      changeDue -= returningValueFromCurrentChange;
+      changeIndex--;
+    }
+
+    return returnValues;
   }
 
 }
@@ -62,6 +99,10 @@ class Drawer {
 const drawer = new Drawer(cid);
 
 console.log(drawer.getSum())
+
+
+console.log(drawer.returnChange(4.5))
+
 
 purchaseBtn.addEventListener('click', (event) => {
   event.preventDefault();
